@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <title>Native online &amp; offline Events Demo</title>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <style>
+        .alert {
+            display: none;
+        }
+    </style>
+
+</head>
+<body class="container">
+    <h1>Native <code>online</code> &amp; <code>offline</code> Events Demo</h1>
+    <p>Read more on the <a href="https://developer.mozilla.org/en-US/docs/Online_and_offline_events" target="_blank">Mozilla Developer Network</a>.</p>
+
+    <div class="alert alert-success online">Online</div>
+    <div class="alert alert-danger offline">Offline</div>
+
+    <script src="scripts/jquery/dist/jquery.min.js"></script>
+    <script>
+
+    $(function () {
+
+        var
+            $online = $('.online'),
+            $offline = $('.offline'),
+            $window = $(window);
+
+        var showOnline = function () {
+            $offline.fadeOut(function () {
+                $online.fadeIn();
+            });
+        };
+
+        var showOffline = function () {
+            $online.fadeOut(function () {
+                $offline.fadeIn();
+            });
+        };
+
+        navigator.onLine ? showOnline() : showOffline();
+
+        $window.on('online', showOnline);
+        $window.on('offline', showOffline);
+
+    });
+
+    </script>
+</body>
+</html>

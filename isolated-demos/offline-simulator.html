@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Offline.js Simulator Demo</title>
+        <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="scripts/offline/themes/offline-theme-chrome.css" />
+        <link rel="stylesheet" href="scripts/offline/themes/offline-language-english.css" />
+
+        <style>
+            .alert {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="container">
+        <h1>Offline.js Simulator Demo</h1>
+
+        <div class="alert alert-success online">Online</div>
+        <div class="alert alert-danger offline">Offline</div>
+
+        <script src="scripts/offline/offline.min.js"></script>
+
+        <script src="scripts/offlinejs-simulate-ui/offline-simulate-ui.min.js"></script>
+
+        <script src="scripts/jquery/dist/jquery.min.js"></script>
+
+        <script>
+
+            $(function () {
+
+                var
+                    $online = $('.online'),
+                    $offline = $('.offline');
+
+                Offline.on('confirmed-down', function () {
+                    $online.fadeOut(function () {
+                        $offline.fadeIn();
+                    });
+                });
+
+                Offline.on('confirmed-up', function () {
+                    $offline.fadeOut(function () {
+                        $online.fadeIn();
+                    });
+                });
+
+                Offline.check();
+
+            });
+
+        </script>
+    </body>
+
+</html>
